@@ -1,5 +1,6 @@
 import 'package:exercise_2/models/expense.dart';
 import 'package:exercise_2/widgets/expenses_list/expenses_list.dart';
+import 'package:exercise_2/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -13,40 +14,40 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
-       amount: 19.99,
-       date: DateTime.now(),
-       category: Category.work,
-       ),
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
 
-        Expense(
+    Expense(
       title: 'Cinema',
-       amount: 15.69,
-       date: DateTime.now(),
-       category: Category.work,
-       ),
+      amount: 15.69,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
   ];
-  
-  @override 
+
+
+  void _openAddExpenseOverly() {
+    showBottomSheet(
+      context: context,
+      builder: (ctx) => const NewExpense(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon: const Icon(Icons.add),
-            ), 
-        ],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
       ),
 
-
       body: Column(
-        children:[
-        const  Text("The chart"),
-        Expanded(
-          child: ExpensesList(expenses: _registeredExpenses),
-        ),
-       ],
-       ),
+        children: [
+          const Text("The chart"),
+          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+        ],
+      ),
     );
   }
 }
