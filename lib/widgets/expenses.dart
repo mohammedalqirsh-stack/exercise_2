@@ -29,17 +29,25 @@ class _ExpensesState extends State<Expenses> {
 
 
   void _openAddExpenseOverly() {
-    showBottomSheet(
-      context: context,
-      builder: (ctx) => const NewExpense(),
-    );
-  }
+  showModalBottomSheet(
+    context: context, 
+    builder: (ctx) {
+      return const NewExpense();
+    },
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+            onPressed: _openAddExpenseOverly,
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
 
       body: Column(
